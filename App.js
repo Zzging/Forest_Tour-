@@ -16,21 +16,26 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
+
+///////////////////////////////////////////
 import HomeScreen from './pages/HomeScreen';
-import SettingsScreen from './pages/SettingsScreen';
-import DetailsScreen from './pages/DetailsScreen';
-import ProfileScreen from './pages/ProfileScreen';
+import StaffScreen from './pages/StaffScreen';
+import CustomerScreen from './pages/CustomerScreen';
+import ProductsScreen from './pages/ProductsScreen';
+import BookingsScreen from './pages/BookingsScreen';
+import SearchStaff from './pages/SearchStaff';
+
 const HomeStack = createStackNavigator(
   {
     //Defination of Navigaton from home screen
     Home: { screen: HomeScreen },
-    Details: { screen: DetailsScreen },
+    // Details: { screen: DetailsScreen },
   },
   {
     defaultNavigationOptions: {
       //Header customization of the perticular Screen
       headerStyle: {
-        backgroundColor: '#42f44b',
+        backgroundColor: '#BA55D3',
       },
       headerTintColor: '#FFFFFF',
       title: 'Home',
@@ -38,48 +43,89 @@ const HomeStack = createStackNavigator(
     },
   }
 );
-const StaffsStack = createStackNavigator(
+
+
+const StaffStack = createStackNavigator(
   {
-    //Defination of Navigaton from home screen
-    Staffs: { screen: ProfileScreen },
+    //Defination of Navigaton from setting screen
+    Staff: { screen: StaffScreen },
+    Search: { screen: SearchStaff },
   },
   {
     defaultNavigationOptions: {
       //Header customization of the perticular Screen
       headerStyle: {
-        backgroundColor: '#42f44b',
+        backgroundColor: '#BA55D3',
       },
       headerTintColor: '#FFFFFF',
-      title: 'Staffs',
+      title: 'STAFF',
       //Header title
     },
   }
 );
 
-const SettingsStack = createStackNavigator(
+const CustomerStack = createStackNavigator(
   {
     //Defination of Navigaton from setting screen
-    Settings: { screen: SettingsScreen },
-    Details: { screen: DetailsScreen },
-    Profile: { screen: ProfileScreen },
+    Customer: { screen: CustomerScreen },
   },
   {
     defaultNavigationOptions: {
       //Header customization of the perticular Screen
       headerStyle: {
-        backgroundColor: '#42f44b',
+        backgroundColor: '#BA55D3',
       },
       headerTintColor: '#FFFFFF',
-      title: 'Settings',
+      title: 'CUSTOMER',
       //Header title
     },
   }
 );
+
+const ProductsStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    Products: { screen: ProductsScreen },
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#BA55D3',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'PRODUCTS',
+      //Header title
+    },
+  }
+);
+
+const BookingsStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    Bookings: { screen: BookingsScreen },
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#BA55D3',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'BOOKING',
+      //Header title
+    },
+  }
+);
+
 const App = createBottomTabNavigator(
   {
     Home: { screen: HomeStack },
-    Settings: { screen: SettingsStack },
-    Staffs: { screen: StaffsStack },
+    Staff: { screen: StaffStack },
+    Customer: { screen: CustomerStack },
+    Products: { screen: ProductsStack },
+    Bookings: { screen: BookingsStack },
+
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -88,18 +134,27 @@ const App = createBottomTabNavigator(
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `ios-information-circle${focused ?
+          iconName = `home${focused ?
             '' : '-outline'
             }`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-checkmark-circle${focused ?
-            '' : '-outline'
-            }`;
-        } else if (routeName === 'Staffs') {
+        } else if (routeName === 'Staff') {
           iconName = `person-circle${focused ?
             '' : '-outline'
             }`;
+        } else if (routeName === 'Customer') {
+          iconName = `people${focused ?
+            '' : '-outline'
+            }`;
+        } else if (routeName === 'Products') {
+          iconName = `cube${focused ?
+            '' : '-outline'
+            }`;
+        } else if (routeName === 'Bookings') {
+          iconName = `bookmarks${focused ?
+            '' : '-outline'
+            }`;
         }
+
         return <IconComponent
           name={iconName}
           size={25}
@@ -108,9 +163,13 @@ const App = createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: '#42f44b',
-      inactiveTintColor: 'gray',
+      activeTintColor: '#FF69B4',
+      // inactiveTintColor: 'HotPink',
     },
   }
 );
 export default createAppContainer(App);
+
+
+
+
